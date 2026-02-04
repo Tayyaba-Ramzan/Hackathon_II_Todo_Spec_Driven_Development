@@ -34,17 +34,18 @@ async def internal_error_handler(request: Request, exc):
 
 # Add CORS middleware to allow requests from the frontend
 origins = [
-    "http://localhost:3000",  # frontend ka URL
-    "http://127.0.0.1:3000",  # optional
+    "http://localhost:3000",                
+    "https://hackathon-ii-todo-spec-driven-devel-seven.vercel.app",          
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # allow frontend
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],    # GET, POST, PUT, DELETE sab allow
-    allow_headers=["*"],    # headers allow
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 # Create the database tables
 @app.on_event("startup")
