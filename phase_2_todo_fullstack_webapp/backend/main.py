@@ -32,14 +32,20 @@ async def internal_error_handler(request: Request, exc):
         content={"detail": "Internal server error"}
     )
 
-# Add CORS middleware to allow requests from the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["hackathon-ii-todo-spec-driven-devel-seven.vercel.app"],  # Frontend origin
+    allow_origins=[
+        "https://hackathon-ii-fullstack-to-do-ai-cha.vercel.app",
+        "https://hackathon-ii-todo-spec-driven-devel-seven.vercel.app",
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3003",
+    ],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, PUT, DELETE, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 # Create the database tables
 @app.on_event("startup")
